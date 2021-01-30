@@ -1,4 +1,4 @@
-int numBalls = 5;
+int numBalls = 10;
 Ball[] balls = new Ball[numBalls];
 float friction = -0.9;
 
@@ -45,9 +45,9 @@ class Ball {
   Ball(float xin, float yin, int idin, Ball[] oin) {
     x = xin;
     y = yin;
-    randx = random(-5,5);
-    randy = random(-5,5);
-    diameter = 30;
+    randx = random(-20,20);
+    randy = random(-20,20);
+    diameter = 60;
     id = idin;
     others = oin;
     c = color(random(256), random(256), random(256));
@@ -58,13 +58,13 @@ class Ball {
       float dx = others[i].x - x;
       float dy = others[i].y - y;
       float distance = sqrt(dx*dx + dy*dy);
-      float minDist = 100;
+      float minDist = 300;
       if (distance <= minDist) { 
            float angle = atan2(dy, dx);
            float targetX = x + cos(angle) * minDist;
            float targetY = y + sin(angle) * minDist;
-           float ax = (targetX - others[i].x) * 0.05;
-           float ay = (targetY - others[i].y) * 0.05;
+           float ax = (targetX - others[i].x) * 0.1;
+           float ay = (targetY - others[i].y) * 0.1;
            randx -= ax;
            randy -= ay;
            others[i].randx += ax;
