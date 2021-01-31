@@ -46,9 +46,9 @@ class Ball {
   Ball(float xin, float yin, int idin, Ball[] oin) {
     x = xin;
     y = yin;
-    randx = random(-20,20);
-    randy = random(-20,20);
-    diameter = random(40,70);
+    randx = random(-40,40);
+    randy = random(-40,40);
+    diameter = random(50,80);
     id = idin;
     others = oin;
     c = color(random(256), random(256), random(256));
