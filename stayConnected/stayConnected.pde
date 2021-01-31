@@ -7,16 +7,17 @@ void setup() {
   for (int i = 0; i < numBalls; i++) {
     balls[i] = new Ball(random(width), random(height), i, balls);
   }
-  //noStroke();
+  
   background(0);
   
 }
 
 void draw() {
-  background(255);
-  textSize(32);
-  text("Stay Distant. Stay Connected", 10, 30); 
-  fill(255, 0, 0);
+  background(0);
+  //textSize(32);
+  //fill(255);
+  //text("Stay Distant. Stay Connected", 10, 30); 
+  
   for (Ball ball : balls) {
     ball.move();
     ball.display();  
@@ -28,7 +29,7 @@ void drawLine(Ball[] balls){
   for (int i = 0; i < numBalls; i++) {
     for (int j = i+1; j < numBalls; j++) {
       line(balls[i].x, balls[i].y, balls[j].x, balls[j].y);
-      stroke(0);
+      stroke(255);
     }
   }
 }
@@ -47,7 +48,7 @@ class Ball {
     y = yin;
     randx = random(-20,20);
     randy = random(-20,20);
-    diameter = 60;
+    diameter = random(40,70);
     id = idin;
     others = oin;
     c = color(random(256), random(256), random(256));
@@ -58,7 +59,7 @@ class Ball {
       float dx = others[i].x - x;
       float dy = others[i].y - y;
       float distance = sqrt(dx*dx + dy*dy);
-      float minDist = 300;
+      float minDist = 200 + diameter + others[i].diameter;
       if (distance <= minDist) { 
            float angle = atan2(dy, dx);
            float targetX = x + cos(angle) * minDist;
@@ -95,7 +96,8 @@ class Ball {
   }
   
   void display() {
-    ellipse(x, y, diameter, diameter);
     fill(c);
+    noStroke();
+    ellipse(x, y, diameter, diameter);
   }
 }
